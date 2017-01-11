@@ -66,7 +66,7 @@ return [
             'engine' => null,
         ],
 
-        'app' => [
+        'forms' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
@@ -75,7 +75,7 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix' => env('DB_DATABASE_APP_PREFIX', 'd'),
+            'prefix' => env('DB_DATABASE_APP_PREFIX', 'f'),
             'strict' => true,
             'engine' => null,
         ],
