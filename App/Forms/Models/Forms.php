@@ -14,7 +14,7 @@ class Forms extends BaseUuid
     protected $table = 'Forms';
     
     protected $fillable = [
-        'id', 'idIdentityCreated', 'title', 'description', 'active', 'totalQuestions', 'totalAnswers', 'averageAllAnswers', 'closed', 'createdAt', 'idIdentityUpdatedAt', 'updatedAt'
+        'id', 'idIdentityCreated', 'title', 'description', 'active', 'totalQuestions', 'totalAnswers', 'closed', 'createdAt', 'averageAllAnswers', 'idIdentityUpdatedAt', 'updatedAt'
     ];
     
     public $timestamps = true;
