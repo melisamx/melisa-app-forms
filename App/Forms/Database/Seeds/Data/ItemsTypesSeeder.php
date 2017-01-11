@@ -7,13 +7,13 @@ use Melisa\Laravel\Database\InstallSeeder;
  *
  * @author Luis Josafat Heredia Contreras
  */
-class ItemsTypeSeeder extends InstallSeeder
+class ItemsTypesSeeder extends InstallSeeder
 {
     
     public function run()
     {
         
-        $this->updateOrCreate('App\Forms\Models\ItemsType', [
+        $this->updateOrCreate('App\Forms\Models\ItemsTypes', [
             [
                 'id'=>1,
                 'name'=>'header',

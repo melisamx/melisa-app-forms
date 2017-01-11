@@ -7,12 +7,12 @@ use Melisa\Laravel\Models\Base;
  *
  * @author Luis Josafat Heredia Contreras
  */
-class ItemsType extends Base
+class ItemsTypes extends Base
 {
     
     protected $connection = 'forms';
     
-    protected $table = 'ItemsType';
+    protected $table = 'ItemsTypes';
     
     protected $fillable = [
         'id', 'name', 'active', 'properties'
