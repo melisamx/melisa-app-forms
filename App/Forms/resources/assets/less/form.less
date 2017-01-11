@@ -1,0 +1,90 @@
+.app-form-view
+{
+    
+    background-color: rgb(237, 231, 246);
+    
+    .other
+    {
+        height: auto !important;
+        padding-bottom: 20px !important;
+    }
+    
+    &::before
+    {
+        content: '';
+        background-color: rgb(103, 58, 183);
+        color: rgba(255, 255, 255, 1);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 278px;
+    }
+    
+    .form
+    {
+        border-top: 8pt solid rgb(179, 136, 255);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+        height: 100%;
+
+        .x-panel-body-default
+        {
+            background: #fff !important;
+        }
+
+        .header
+        {
+
+            margin-bottom: 22px;
+            padding: 16px 17px;
+
+            .title,
+            .description
+            {
+                margin: 0;
+            }
+
+            .title
+            {
+                font-size: 34px;
+                line-height: 135%;
+                font-family: Roboto,​RobotoDraft,​Helvetica,​Arial;
+            }
+
+            .description
+            {
+                color: rgba(0,0,0,0.87);
+                font-size: 13px;
+                line-height: 135%;
+                margin-top: 22px;
+            }
+        }
+
+        .question
+        {
+            
+            padding: 16px 17px;
+
+            &.header
+            {
+
+                .x-form-item-label-default 
+                {
+                    color: #000;
+                    font-size: 20px;
+                    line-height: 135%;
+                    font-family: Roboto,​RobotoDraft,​Helvetica,​Arial;
+                }
+
+                .description
+                {
+                    color: rgba(0,0,0,0.87);
+                    font-size: 13px;
+                    line-height: 135%;
+                }
+
+            }
+        }
+    }
+    
+}
