@@ -77,11 +77,13 @@ Ext.define('Melisa.forms.view.desktop.forms.view.WrapperController', {
                 cls: 'question header',
                 fieldLabel: config.title || 'Opción 1',
                 labelAlign: 'top',
-                name: config.name || config.title,
+                /* If we use title, the name will be repeated */
+                name: config.name || config.id,
                 allowBlank: !config.required,
                 msgTarget: 'under',
                 blankText: 'Debe seleccionar un item de este grupo',
-                items: []
+                items: [],
+                question: config
             });
             
         if( config.name) {
