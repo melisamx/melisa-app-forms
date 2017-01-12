@@ -8,6 +8,26 @@ Ext.define('Melisa.forms.view.desktop.forms.view.Wrapper', {
     
     controller: 'forsmformview',
     cls: 'form',
-    bodyPadding: '34 17'
+    bodyPadding: '34 17',
+    bbar: [
+        {
+            xtype: 'button',
+            cls: 'btnSend',
+            scale: 'large',
+            text: 'Enviar',
+            listeners: {
+                click: 'onClickBtnSend'
+            }
+        }
+    ],
+    
+    build: function(url) {
+        
+        var me = this,
+            controller = me.getController();
+    
+        return controller.build(url);
+        
+    }
     
 });

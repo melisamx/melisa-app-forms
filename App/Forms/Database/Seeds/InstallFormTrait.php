@@ -97,6 +97,7 @@ trait InstallFormTrait
             'order'=>$order,
             'required'=>true,
             'removable'=>false,
+            'description'=>null,
         ]);
         
         $formItem = FormsItems::updateOrCreate([
@@ -106,6 +107,7 @@ trait InstallFormTrait
         ], [
             'idIdentityCreated'=>$idIdentity,
             'title'=>$default['title'],
+            'description'=>$default['description'],
             'required'=>$default['required'],
             'removable'=>$default['removable'],
         ]);

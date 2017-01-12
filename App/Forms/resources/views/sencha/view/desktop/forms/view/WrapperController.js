@@ -6,30 +6,62 @@ Ext.define('Melisa.forms.view.desktop.forms.view.WrapperController', {
         'Melisa.forms.view.desktop.forms.items.HeaderItem'
     ],
     
-    onRender: function() {
-        this.build();
-    },
-    
-    build: function() {
+    build: function(id) {
         
         var me = this,
-            formConfig = me.getView().melisa,
+            form = me.getView(),
+            url = form.getForm().url;
+    
+        if( Ext.isEmpty(url)) {
+            return false;
+        }
+        
+        form.setLoading('Abriendo formulario...');
+        
+        Ext.Ajax.request({
+            url: url + id,
+            method: 'GET',
+            success: me.onSuccessGetForms,
+            failure: me.onFailureGetForms,
+            scope: me
+        });
+        
+    },
+    
+    onSuccessGetForms: function(request) {
+        
+        var me = this,
+            form = me.getView(),
+            config = Ext.decode(request.responseText, true);
+    
+        form.setLoading(false);
+        me.generate(config.data);
+        
+    },
+    
+    onFailureGetForms: function() {
+        console.log('onFailureGetForms', arguments);
+    },
+    
+    generate: function(config) {
+        
+        var me = this,
             form = me.getView();
         
-        Ext.each(formConfig.items, function(formItem) {
+        Ext.each(config.items, function(formItem) {
             
-            switch (formItem.itemType) {
+            switch (formItem.type) {
                 case 'header':
                     
                     me.appendHeader(form, formItem);
                     break;
                     
-                case 'radiogroup':
+                case 'question':
                     me.appendQuestionRadioGroup(form, formItem);
                     break;
                     
                 default:
-                    me.fireEvent('appenditemcustom', formItem.itemType, form, formItem);
+                    me.fireEvent('appenditemcustom', formItem.type, form, formItem);
                     break;
             }
             
@@ -40,11 +72,15 @@ Ext.define('Melisa.forms.view.desktop.forms.view.WrapperController', {
     appendQuestionRadioGroup: function(form, config) {
         
         var me = this,
-            configRadioGroup = Ext.applyIf(config.properties, {
+            configRadioGroup = Ext.applyIf(config.properties || {}, {
                 xtype: 'radiogroup',
                 cls: 'question header',
                 fieldLabel: config.title || 'Opción 1',
                 labelAlign: 'top',
+                name: config.name || config.title,
+                allowBlank: !config.required,
+                msgTarget: 'under',
+                blankText: 'Debe seleccionar un item de este grupo',
                 items: []
             });
             
@@ -91,6 +127,32 @@ Ext.define('Melisa.forms.view.desktop.forms.view.WrapperController', {
             }
         });
         
+    },
+    
+    onClickBtnSend: function(button) {
+        
+        var me = this,
+            view = me.getView(),
+            event = {
+                values: view.getValues(),
+                form: view,
+                cancel: false,
+                button: button,
+                params: {}
+            };
+            
+        if( !view.isValid()) {
+            console.log(view.getForm().getFieldValues());
+            me.log('form invalid', view);
+            return;
+        }
+    
+        if( !view.fireEvent('beforesend', event) || event.cancel) {
+            me.log('cancel send form', event);
+            return;
+        }
+        
+        console.log('paso');
     }
     
 });
