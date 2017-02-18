@@ -45,7 +45,7 @@ class ReadByIdLogic
         $data ['items']= [];
         
         $formItems = $this->itemsrepo
-                ->getByCriteria($this->itemscriteria)
+                ->withCriteria($this->itemscriteria)
                 ->findAllBy('idForm', $id);
         
         if( !count($formItems)) {
@@ -62,9 +62,9 @@ class ReadByIdLogic
                 continue;
             }
             
-            $formOptions = $this->optionsrepo->getByCriteriaReset($this->optionscriteria, [
+            $formOptions = $this->optionsrepo->getByCriteria($this->optionscriteria, [
                 'idFormItem'=>$formItem->id
-            ])->get();
+            ]);
             
             if( !count($formOptions)) {
                 $data ['items'][]= $item;
